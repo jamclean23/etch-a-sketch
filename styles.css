@@ -25,6 +25,7 @@ body {
     background-color: #AF9AB2;
     border: 1px solid #443730;
     border-radius: 8px;
+    transition: .3s;
 }
 
 .container {
@@ -66,7 +67,7 @@ button {
     margin-inline: auto;
     height: 86vh;
     width: 86vh;
-    background-color: #FF9A5C;
+    background-color: #443730;
     border-radius: 8px;
     display: flex;
     flex-direction: column;

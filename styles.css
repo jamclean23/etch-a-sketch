@@ -35,9 +35,18 @@ body {
 
 .leftColumn {
     border: .5rem solid #443730;
+    padding: 1rem;
     flex: 1;
     background-color: #FF9A5C;
     border-radius: 8px;
+    font-family: luminari, fantasy;
+    font-size: 4rem;
+    color: #443730;
+    font-weight: bolder;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .centerColumn {
@@ -75,7 +84,16 @@ button {
 
 .rightColumn {
     border: .5rem solid #443730;
+    padding: 1rem;
     flex: 1;
     background-color: #FF9A5C;
     border-radius: 8px;
+    font-family: luminari, fantasy;
+    font-size: 4rem;
+    color: #443730;
+    font-weight: bolder;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

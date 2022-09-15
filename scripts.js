@@ -59,7 +59,10 @@ function createDiv(gridWidth) {
             let currentRow = document.querySelector(`.gridRow${i}`);
             currentRow.appendChild(gridCell);
 
+            gridCell.initialColor = getComputedStyle(gridCell).backgroundColor;
+
             gridCell.addEventListener('mouseover', selectGridCell);
+            
 
         }
     }
@@ -67,8 +70,20 @@ function createDiv(gridWidth) {
 
 //Select a cell when the mouse hovers
 function selectGridCell(e) {
-    console.log(e.target);
+
+    if (e.target.initialColor == getComputedStyle(e.target).backgroundColor) {
     e.target.style.cssText = "background-color: #FDDF49;";
+    } else {
+        //let rgbDifference = divideRgbBy10(getComputedStyle(e.target).backgroundColor);
+        //let newRgb = subtractFromRgb(getComputedStyle(e.target).backgroundColor, rgbDifference);
+        //let newRgbString = "rgb(" + newRgb.join(", ") + ")";
+        //console.log(newRgbString);
+        
+        
+        //e.target.style.cssText = "background-color: " + e.target.initialColor + ";";
+
+
+    }
 
 
 }
@@ -83,4 +98,62 @@ function clearGrid() {
     const gridRows = document.querySelectorAll('.gridRow');
     gridRows.forEach(gridRow => {gridRow.remove()});
     console.log("removing rows");
+}
+
+//Rgb string to array
+function rgbToArray(rgb) {
+    let rgbString = rgb;
+    rgbString = rgbString.replaceAll(' ', '');
+    rgbString = rgbString.replace('rgb(', '');
+    rgbString = rgbString.replace(')', '');
+    rgbString = rgbString.split(',');
+    return rgbString;
+}
+
+//Array to rgb string
+function arrayToRgbString(array) {
+    let rgbString = "rgb(" + array.join(", ") + ")";
+    return rgbString;
+}
+
+//Subtract array from rgb string and round
+function subtractFromRgb(rgbString, array) {
+    let rgbArray = rgbToArray(rgbString);
+    let toBeSubtracted = array;
+
+    rgbArray.forEach(subtract);
+    function subtract (currentValue, index, array) {
+        array[index] = Math.round(currentValue - toBeSubtracted[index]);
+    }
+
+    return rgbArray;
+
+    function rgbToArray(rgb) {
+        let rgbString = rgb;
+        rgbString = rgbString.replaceAll(' ', '');
+        rgbString = rgbString.replace('rgb(', '');
+        rgbString = rgbString.replace(')', '');
+        rgbString = rgbString.split(',');
+        return rgbString;
+    }
+}
+
+//Divide rbg values by 10, given an rgb string. Return an array
+function divideRgbBy10(string) {
+    rgbArray = rgbToArray(string);
+    rgbArray.forEach(divideByTen)
+    return rgbArray;
+
+    function divideByTen(item, index, array) {
+        array[index] = item / 10;
+    }
+
+    function rgbToArray(rgb) {
+        let rgbString = rgb;
+        rgbString = rgbString.replaceAll(' ', '');
+        rgbString = rgbString.replace('rgb(', '');
+        rgbString = rgbString.replace(')', '');
+        rgbString = rgbString.split(',');
+        return rgbString;
+    }
 }

@@ -61,6 +61,8 @@ function createDiv(gridWidth) {
 
             gridCell.initialColor = getComputedStyle(gridCell).backgroundColor;
 
+            gridCell.hoverColor = "rgb(253, 223, 73)";
+
             gridCell.addEventListener('mouseover', selectGridCell);
             
 
@@ -68,19 +70,22 @@ function createDiv(gridWidth) {
     }
 }
 
-//Select a cell when the mouse hovers
+//Select a cell and process when the mouse hovers
 function selectGridCell(e) {
 
     if (e.target.initialColor == getComputedStyle(e.target).backgroundColor) {
     e.target.style.cssText = "background-color: #FDDF49;";
     } else {
-        //let rgbDifference = divideRgbBy10(getComputedStyle(e.target).backgroundColor);
-        //let newRgb = subtractFromRgb(getComputedStyle(e.target).backgroundColor, rgbDifference);
-        //let newRgbString = "rgb(" + newRgb.join(", ") + ")";
+
+        //ten highlights until black
+        //e.target.rgbDifference = divideRgbBy10(e.target.hoverColor);
+        //console.log(e.target.rgbDifference);
+        //let newRgbString = subtractFromRgb(getComputedStyle(e.target).backgroundColor, e.target.rgbDifference);
         //console.log(newRgbString);
-        
-        
-        //e.target.style.cssText = "background-color: " + e.target.initialColor + ";";
+        //e.target.style.cssText = "background-color: " + newRgbString + ";";
+
+        //hover changes cell back to initial color
+        e.target.style.cssText = "background-color: " + e.target.initialColor + ";";
 
 
     }
@@ -110,11 +115,6 @@ function rgbToArray(rgb) {
     return rgbString;
 }
 
-//Array to rgb string
-function arrayToRgbString(array) {
-    let rgbString = "rgb(" + array.join(", ") + ")";
-    return rgbString;
-}
 
 //Subtract array from rgb string and round
 function subtractFromRgb(rgbString, array) {
@@ -126,7 +126,15 @@ function subtractFromRgb(rgbString, array) {
         array[index] = Math.round(currentValue - toBeSubtracted[index]);
     }
 
-    return rgbArray;
+    let resultString = arrayToRgbString(rgbArray);
+
+    return resultString;
+
+    function arrayToRgbString(array) {
+        let rgbArray = array;
+        let rgbString = "rgb(" + rgbArray.join(", ") + ")";
+        return rgbString;
+    }
 
     function rgbToArray(rgb) {
         let rgbString = rgb;
